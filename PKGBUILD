@@ -8,7 +8,7 @@ _git="false"
 _pkg=evm-chains-explorers
 pkgname="${_pkg}"
 pkgver="0.0.0.0.0.0.0.0.0.0.0.1"
-_commit="85c0cd2d32f530be7b9b1dcc9604b5a450e90d23"
+_commit="58f68d961b04d7017e13c9f2e5223887ea630ee3"
 pkgrel=1
 _pkgdesc=(
   "Retrieval tool for EVM chains explorers."
@@ -66,7 +66,7 @@ elif [[ "${_git}" == false ]]; then
     _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
   elif [[ "${_tag_name}" == "commit" ]]; then
     _src="${_tarname}.zip::${_url}/archive/${_commit}.zip"
-    _sum='1b588a7558413b9a1535a4efdcff97998ccbae5bbed41159575da1e045d6b1f2'
+    _sum='abd5a2a37a44236de9ac83dbde5b99b5fb98943db505d9c9c68b8e5d4db22d9b'
   fi
 fi
 source=(
@@ -100,3 +100,4 @@ package() {
 }
 
 # vim: ft=sh syn=sh et
+
