@@ -1,21 +1,57 @@
 # SPDX-License-Identifier: AGPL-3.0
-#
-# Maintainer: Truocolo <truocolo@aol.com>
-# Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
 
+#    ----------------------------------------------------------------------
+#    Copyright © 2024, 2025  Pellegrino Prevete
+#
+#    All rights reserved
+#    ----------------------------------------------------------------------
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Maintainer: Truocolo <truocolo@aol.com>
+# Maintainer: Truocolo <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
+# Maintainer: Pellegrino Prevete (dvorak) <pellegrinoprevete@gmail.com>
+# Maintainer: Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
+
+_os="$( \
+  uname \
+    -o)"
+_evmfs_available="$( \
+  command \
+    -v \
+    "evmfs" || \
+    true)"
+if [[ ! -v "_evmfs" ]]; then
+  if [[ "${_evmfs_available}" != "" ]]; then
+    _evmfs="true"
+  elif [[ "${_evmfs_available}" == "" ]]; then
+    _evmfs="false"
+  fi
+fi
 _offline="false"
 _git="false"
 _pkg=evm-chains-explorers
 pkgname="${_pkg}"
-pkgver="0.0.0.0.0.0.0.0.0.0.0.1.1.1"
-_commit="0af9e6fea283bcd2fec9510836015318a66d1135"
+pkgver="0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
+_commit="013d193d2306b99206af268c959c51769222f99e"
 pkgrel=1
 _pkgdesc=(
   "Retrieval tool for EVM chains explorers."
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
-  any
+  'any'
 )
 _http="https://github.com"
 _ns="themartiancompany"
@@ -29,9 +65,6 @@ depends=(
   "libcrash-bash"
 )
 optdepends=()
-_os="$( \
-  uname \
-    -o)"
 if [[ "${_os}" != "GNU/Linux" ]] && \
    [[ "${_os}" == "Android" ]]; then
   depends+=(
@@ -42,7 +75,7 @@ fi
 optdepends+=(
 )
 makedepends=(
-  make
+  'make'
 )
 checkdepends=(
   "shellcheck"
@@ -54,7 +87,28 @@ _tarname="${pkgname}-${_tag}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${pkgname}"
 fi
-if [[ "${_git}" == true ]]; then
+_evmfs_network="100"
+_evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
+_evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
+_archive_sum='e81bdd1b70f3878c6eeefb99688e307b6df31796e2d18c325d6105bfd61839f7'
+_evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
+_evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
+_archive_sig_sum="a31c4ba2135194481afee65e78be2f2be758ec9c985de30e616a0548c34770e3"
+_archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
+_archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
+if [[ "${_evmfs}" == "true" ]]; then
+  makedepends+=(
+    "evmfs"
+  )
+  _src="${_evmfs_archive_src}"
+  _sum="${_archive_sum}"
+  source+=(
+    "${_archive_sig_src}"
+  )
+  sha256sums+=(
+    "${_archive_sig_sum}"
+  )
+elif [[ "${_git}" == true ]]; then
   makedepends+=(
     "git"
   )
@@ -66,7 +120,7 @@ elif [[ "${_git}" == false ]]; then
     _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
   elif [[ "${_tag_name}" == "commit" ]]; then
     _src="${_tarname}.zip::${_url}/archive/${_commit}.zip"
-    _sum='aa9335776fc9473970d11dd8ccd212439d090715440249278a85ffb933c04d39'
+    _sum="${_archive_sum}"
   fi
 fi
 source=(
@@ -80,6 +134,8 @@ validpgpkeys=(
   # Truocolo <truocolo@aol.com>
   '97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9'
   'DD6732B02E6C88E9E27E2E0D5FC6652B9D9A6C01'
+  # Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
+  '12D8E3D7888F741E89F86EE0FEC8567A644F1D16'
 )
 
 check() {
@@ -100,4 +156,3 @@ package() {
 }
 
 # vim: ft=sh syn=sh et
-
