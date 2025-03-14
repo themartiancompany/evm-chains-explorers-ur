@@ -43,8 +43,8 @@ _offline="false"
 _git="false"
 _pkg=evm-chains-explorers
 pkgname="${_pkg}"
-pkgver="0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
-_commit="013d193d2306b99206af268c959c51769222f99e"
+pkgver="0.0.0.0.0.0.0.0.0.0.1"
+_commit="fdfac9bc66640f1bacff584deaebd2fb35315cad"
 pkgrel=1
 _pkgdesc=(
   "Retrieval tool for EVM chains explorers."
@@ -90,10 +90,10 @@ fi
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum='e81bdd1b70f3878c6eeefb99688e307b6df31796e2d18c325d6105bfd61839f7'
+_archive_sum='ec3ca319fe7df4333b6626a64d5e1965f05c788ce8e34415e04e3a5f889533d9'
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
-_archive_sig_sum="a31c4ba2135194481afee65e78be2f2be758ec9c985de30e616a0548c34770e3"
+_archive_sig_sum='c3027b9ae9c7954f0560094d13b2c35271e1de89c3f5ea4af95b55ac48359f6e'
 _archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
 _archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
