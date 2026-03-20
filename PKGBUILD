@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0
+_github_sig_sum="f013bb018c5ec3e4c3d2206d512a6e94e702873ac08f7f19310547f69fd9702f"
 
 #    ----------------------------------------------------------------------
 #    Copyright © 2024, 2025, 2026  Pellegrino Prevete
@@ -76,7 +77,7 @@ if [[ "${_docs}" == "true" ]]; then
 fi
 pkgver="0.0.0.0.0.0.0.0.0.0.1.1.1"
 _commit="0e05d244ec606bd75070876b9ed29825e408befd"
-pkgrel=10
+pkgrel=11
 _github_sig_sum="SKIP"
 _pkgdesc=(
   "Retrieval tool for EVM chains explorers."
@@ -142,7 +143,7 @@ fi
 _gitlab_sum="82f33f650b3c16ae426d36b8f678f6d9a8bc0b68435185ec26f12ed6905609ff"
 _gitlab_sig_sum="0f1429295f5953a72c388bdc7e3bc65b756dfee65afbd026abe1a0ef1ae74e63"
 _github_sum="8d7a35cd36a437f5f97f10542aec0aeef169d40373e16ab107a1c92fb5282bee"
-_github_sum="f013bb018c5ec3e4c3d2206d512a6e94e702873ac08f7f19310547f69fd9702f"
+_github_sig_sum="7412c04077e318cef96f14252eb33da1113211675f2252e706a0e1659e38ebbf"
 _sum="${_gitlab_sum}"
 _sig_sum="${_gitlab_sig_sum}"
 _evmfs_network="100"
