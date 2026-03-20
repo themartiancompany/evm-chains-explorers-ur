@@ -48,8 +48,11 @@ fi
 if [[ ! -v "_offline" ]]; then
   _offline="false"
 fi
+if [[ ! -v "_git_service" ]]; then
+  _git_service="gitlab"
+fi
 if [[ ! -v "_git_http" ]]; then
-  _git_http="gitlab"
+  _git_http="${_git_service}"
 fi
 if [[ "${_git_http}" == "github" ]]; then
   _archive_format="zip"
@@ -73,7 +76,7 @@ if [[ "${_docs}" == "true" ]]; then
 fi
 pkgver="0.0.0.0.0.0.0.0.0.0.1.1.1"
 _commit="0e05d244ec606bd75070876b9ed29825e408befd"
-pkgrel=7
+pkgrel=8
 _pkgdesc=(
   "Retrieval tool for EVM chains explorers."
 )
